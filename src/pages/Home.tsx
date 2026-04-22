@@ -13,7 +13,7 @@ export const Home = (): FunctionComponent => {
 	};
 
 	return (
-		<div className="bg-blue-300 font-bold w-screen h-screen flex flex-col justify-center items-center">
+		<div className="bg-blue-300 font-bold flex-1 flex flex-col justify-center items-center h-full">
 			<p className="text-white text-6xl">{t("home.greeting")}</p>
 			<button
 				className="hover:cursor-pointer"
