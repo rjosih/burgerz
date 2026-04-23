@@ -10,19 +10,25 @@ interface Props {
 	error?: string;
 }
 
-export const ScoreField = ({ label, name, control, error }: Props): ReactElement => (
-	<div className="flex flex-col gap-1">
-		<span className="text-sm text-slate-600">{label}</span>
+export const ScoreField = ({
+	label,
+	name,
+	control,
+	error,
+}: Props): ReactElement => (
+	<fieldset className="flex flex-col gap-1">
+		<legend className="text-sm text-slate-600">{label}</legend>
 		<Controller
 			control={control}
 			name={name}
 			render={({ field }) => (
 				<ScoreButton
 					error={error}
+					fieldName={label}
 					value={field.value}
 					onChange={field.onChange}
 				/>
 			)}
 		/>
-	</div>
+	</fieldset>
 );

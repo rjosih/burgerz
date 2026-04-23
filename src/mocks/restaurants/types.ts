@@ -29,7 +29,7 @@ export interface Photo {
 	renditions: PhotoRenditions;
 	moderationStatus: ModerationStatus;
 	exifStrippedKey: string;
-	altText: string;
+	altText?: string;
 	caption: string;
 	isDecorative: boolean;
 }

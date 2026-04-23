@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { type ReactElement, useState } from "react";
+import { PhotoImage } from "../components/PhotoImage";
 import { Review } from "../components/Review";
 import { reviewDb } from "../mocks/reviews/db";
 import { restaurantDb } from "../mocks/restaurants/db";
@@ -17,14 +18,18 @@ export const RestaurantDetail = ({ restaurantId }: Props): ReactElement => {
 
 	const averageScore =
 		approvedReviews.length > 0
-			? approvedReviews.reduce((sum, r) => sum + r.overallScore, 0) / approvedReviews.length
+			? approvedReviews.reduce((sum, r) => sum + r.overallScore, 0) /
+				approvedReviews.length
 			: null;
 
 	if (!restaurant) {
 		return (
 			<div className="p-8">
 				<p className="text-slate-500">Restaurant not found.</p>
-				<Link className="mt-4 inline-block text-sm text-slate-700 underline" to="/restaurants">
+				<Link
+					className="mt-4 inline-block text-sm text-slate-700 underline"
+					to="/restaurants"
+				>
 					Back to restaurants
 				</Link>
 			</div>
@@ -33,25 +38,33 @@ export const RestaurantDetail = ({ restaurantId }: Props): ReactElement => {
 
 	return (
 		<div className="p-8">
-			<Link className="mb-6 inline-block rounded px-2 py-1 text-sm text-slate-500 hover:text-slate-700" to="/restaurants">
+			<Link
+				aria-label="Back to Restaurants"
+				className="mb-6 inline-block rounded px-2 py-1 text-sm text-slate-500 hover:text-slate-700 focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:outline-none"
+				to="/restaurants"
+			>
 				← Restaurants
 			</Link>
 
 			<div className="mb-8 flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm sm:flex-row">
-				<img
-					alt={restaurant.photo.altText}
+				<PhotoImage
+					priority
 					className="h-48 w-full object-cover sm:h-auto sm:w-64"
-					src={`/${restaurant.photo.renditions.large}`}
+					photo={restaurant.photo}
+					sizes="(max-width: 640px) 100vw, 256px"
 				/>
 				<div className="flex flex-col justify-center gap-2 p-6">
-					<h1 className="text-2xl font-bold text-slate-900">{restaurant.name}</h1>
+					<h1 className="text-2xl font-bold text-slate-900">
+						{restaurant.name}
+					</h1>
 					<p className="text-sm text-slate-500">{restaurant.address}</p>
 					<p className="text-sm text-slate-500">{restaurant.phone}</p>
 					{averageScore !== null && (
 						<p className="text-sm font-medium text-slate-700">
 							Rating: {averageScore.toFixed(1)} / 5.0
-							<span className="ml-2 font-normal text-slate-400">
-								({approvedReviews.length} {approvedReviews.length === 1 ? "review" : "reviews"})
+							<span className="ml-2 font-normal text-slate-500">
+								({approvedReviews.length}{" "}
+								{approvedReviews.length === 1 ? "review" : "reviews"})
 							</span>
 						</p>
 					)}
@@ -70,7 +83,9 @@ export const RestaurantDetail = ({ restaurantId }: Props): ReactElement => {
 							isExpanded={expandedId === review.id}
 							restaurantName={restaurant.name}
 							review={review}
-							onToggle={() => { setExpandedId(expandedId === review.id ? null : review.id); }}
+							onToggle={() => {
+								setExpandedId(expandedId === review.id ? null : review.id);
+							}}
 						/>
 					))}
 				</div>

@@ -9,7 +9,9 @@ export type TextModerationResult =
 	| { safe: false; reason: string };
 
 const delay = (ms: number): Promise<void> =>
-	new Promise((resolve) => { setTimeout(resolve, ms); });
+	new Promise((resolve) => {
+		setTimeout(resolve, ms);
+	});
 
 const UNSAFE_LABELS = [
 	"Explicit Nudity",
@@ -29,20 +31,27 @@ const FLAGGED_KEYWORDS = [
 	"inappropriate",
 ];
 
-export const moderateImage = async (_file: File): Promise<ImageModerationResult> => {
+export const moderateImage = async (
+	_file: File
+): Promise<ImageModerationResult> => {
 	// Simulate DetectModerationLabels API latency
 	await delay(1200 + Math.random() * 800);
 
-	// 15% chance to flag — enough to demonstrate the flow without being too disruptive
-	if (Math.random() < 0.15) {
-		const label = UNSAFE_LABELS[Math.floor(Math.random() * UNSAFE_LABELS.length)];
+	// 50% chance to flag — enough to demonstrate the flow without being too disruptive
+	if (Math.random() < 0.5) {
+		const label = UNSAFE_LABELS[
+			Math.floor(Math.random() * UNSAFE_LABELS.length)
+		] as string;
+		console.log(typeof label);
 		return { safe: false, label };
 	}
 
 	return { safe: true };
 };
 
-export const moderateText = async (text: string): Promise<TextModerationResult> => {
+export const moderateText = async (
+	text: string
+): Promise<TextModerationResult> => {
 	// Simulate DetectModerationLabels (text) API latency
 	await delay(700 + Math.random() * 400);
 

@@ -7,7 +7,7 @@ export const handleRestaurantSelect = (
 	name: string,
 	setValue: UseFormSetValue<FormValues>,
 	setRestaurantQuery: (query: string) => void,
-	setShowDropdown: (show: boolean) => void,
+	setShowDropdown: (show: boolean) => void
 ): void => {
 	setValue("restaurantId", id, { shouldValidate: true });
 	setRestaurantQuery(name);
