@@ -9,7 +9,11 @@ interface Props {
 	overallScore: number | null;
 }
 
-export const ReviewScores = ({ control, errors, overallScore }: Props) : ReactElement=> (
+export const ReviewScores = ({
+	control,
+	errors,
+	overallScore,
+}: Props): ReactElement => (
 	<fieldset className="flex flex-col gap-4 rounded-lg border border-slate-200 p-4">
 		<legend className="px-1 text-sm font-medium text-slate-700">Scores</legend>
 		<ScoreField
@@ -33,7 +37,9 @@ export const ReviewScores = ({ control, errors, overallScore }: Props) : ReactEl
 		{overallScore !== null && (
 			<p className="text-sm text-slate-500">
 				Overall:{" "}
-				<span className="font-medium text-slate-700">{overallScore.toFixed(1)} / 5.0</span>
+				<span className="font-medium text-slate-700">
+					{overallScore.toFixed(1)} / 5.0
+				</span>
 			</p>
 		)}
 	</fieldset>

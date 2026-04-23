@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import type { ReactElement } from "react";
 
 const navItems = [
 	{ to: "/", label: "Start", exact: true },
@@ -7,28 +8,37 @@ const navItems = [
 	{ to: "/restaurants", label: "Restaurants", exact: false },
 ] as const;
 
-const baseClass =
-	"flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-slate-700 hover:text-white";
-const activeClass = "bg-slate-700 text-white";
+type NavItem = (typeof navItems)[number];
 
-export const SideNav = () => {
-	return (
-		<nav className="flex h-screen w-56 flex-col bg-slate-800 px-3 py-4">
-			<span className="mb-6 px-3 text-lg font-bold text-white">The Burger Frontend</span>
-			<ul className="flex flex-col gap-1">
-				{navItems.map(({ to, label, exact }) => (
-					<li key={to}>
-						<Link
-							activeOptions={{ exact }}
-							activeProps={{ className: `${baseClass} ${activeClass}` }}
-							className={baseClass}
-							to={to}
-						>
-							{label}
-						</Link>
-					</li>
-				))}
-			</ul>
-		</nav>
-	);
-};
+const NavLink = ({ to, label, exact }: NavItem): ReactElement => (
+	<Link
+		activeOptions={{ exact }}
+		className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-slate-700 hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+		to={to}
+		activeProps={{
+			"aria-current": "page",
+			className:
+				"flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium bg-slate-700 text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none",
+		}}
+	>
+		{label}
+	</Link>
+);
+
+export const SideNav = (): ReactElement => (
+	<nav
+		aria-label="Main navigation"
+		className="hidden h-screen w-56 flex-col bg-slate-800 px-3 py-4 sm:flex"
+	>
+		<span aria-hidden="true" className="mb-6 px-3 text-lg font-bold text-white">
+			burgerz
+		</span>
+		<ul className="flex flex-col gap-1">
+			{navItems.map((item) => (
+				<li key={item.to}>
+					<NavLink {...item} />
+				</li>
+			))}
+		</ul>
+	</nav>
+);

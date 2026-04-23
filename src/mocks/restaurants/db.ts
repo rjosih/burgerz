@@ -14,7 +14,8 @@ const records: Array<Restaurant> = [
 			renditions: {
 				thumbnail:
 					"photos/restaurants/smash-station-halmstad/renditions/smashstationhalmstad-thumb.avif",
-				medium: "photos/restaurants/smash-station-halmstad/renditions/smashstationhalmstad-medium.avif",
+				medium:
+					"photos/restaurants/smash-station-halmstad/renditions/smashstationhalmstad-medium.avif",
 				large:
 					"photos/restaurants/smash-station-halmstad/renditions/smashstationhalmstad-large.avif",
 			},
@@ -50,16 +51,19 @@ const records: Array<Restaurant> = [
 			id: "e8c1d2a3-2222-4c44-9b11-aaaabbbb0002",
 			name: "Brioche Brothers Interior",
 			reviewId: null,
-			originalKey: "photos/restaurants/brioche-brothers/original/briocheburgers.avif",
+			originalKey:
+				"photos/restaurants/brioche-brothers/original/briocheburgers.avif",
 			renditions: {
 				thumbnail:
 					"photos/restaurants/brioche-brothers/renditions/briochebrothers-thumb.avif",
-				medium: "photos/restaurants/brioche-brothers/renditions/briochebrothers-medium.avif",
+				medium:
+					"photos/restaurants/brioche-brothers/renditions/briochebrothers-medium.avif",
 				large:
 					"photos/restaurants/brioche-brothers/renditions/briochebrothers-large.avif",
 			},
 			moderationStatus: "approved",
-			exifStrippedKey: "photos/restaurants/brioche-brothers/clean/briochebrothers-clean.avif",
+			exifStrippedKey:
+				"photos/restaurants/brioche-brothers/clean/briochebrothers-clean.avif",
 			altText: "Interior of Brioche Brothers burger restaurant",
 			caption: "Dining area at Brioche Brothers",
 			isDecorative: false,
@@ -90,12 +94,14 @@ const records: Array<Restaurant> = [
 			renditions: {
 				thumbnail:
 					"photos/restaurants/patty-corner/renditions/pattycorner-thumb.avif",
-				medium: "photos/restaurants/patty-corner/renditions/pattycorner-medium.avif",
+				medium:
+					"photos/restaurants/patty-corner/renditions/pattycorner-medium.avif",
 				large:
 					"photos/restaurants/patty-corner/renditions/pattycorner-large.avif",
 			},
 			moderationStatus: "approved",
-			exifStrippedKey: "photos/restaurants/patty-corner/clean/pattycorner-clean.avif",
+			exifStrippedKey:
+				"photos/restaurants/patty-corner/clean/pattycorner-clean.avif",
 			altText: "Burger plate with fries served at Patty Corner",
 			caption: "Signature burger meal at Patty Corner",
 			isDecorative: false,
@@ -122,11 +128,13 @@ const records: Array<Restaurant> = [
 			id: "e8c1d2a3-4444-4c44-9b11-aaaabbbb0004",
 			name: "Northern Bun Exterior",
 			reviewId: null,
-			originalKey: "photos/restaurants/northern-bun-umea/original/northernbunumea.avif",
+			originalKey:
+				"photos/restaurants/northern-bun-umea/original/northernbunumea.avif",
 			renditions: {
 				thumbnail:
 					"photos/restaurants/northern-bun-umea/renditions/northernbunumea-thumb.avif",
-				medium: "photos/restaurants/northern-bun-umea/renditions/northernbunumea-medium.avif",
+				medium:
+					"photos/restaurants/northern-bun-umea/renditions/northernbunumea-medium.avif",
 				large:
 					"photos/restaurants/northern-bun-umea/renditions/northernbunumea-large.avif",
 			},
@@ -174,7 +182,7 @@ export const restaurantDb = {
 
 	update(
 		id: string,
-		data: Partial<Omit<Restaurant, "id" | "createdAt">>,
+		data: Partial<Omit<Restaurant, "id" | "createdAt">>
 	): Restaurant | undefined {
 		const index = records.findIndex((r) => r.id === id);
 		if (index === -1) return undefined;

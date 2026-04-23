@@ -125,7 +125,8 @@ const records: Array<Review> = [
 				},
 				moderationStatus: "approved",
 				exifStrippedKey: "photos/reviews/5.avif",
-				altText: "Northern Bun signature double smash burger with lingonberry aioli",
+				altText:
+					"Northern Bun signature double smash burger with lingonberry aioli",
 				caption: "The Northern Bun — a Scandinavian smash burger done right",
 				isDecorative: false,
 			},
@@ -213,7 +214,7 @@ export const reviewDb = {
 
 	update(
 		id: string,
-		data: Partial<Omit<Review, "id" | "createdAt">>,
+		data: Partial<Omit<Review, "id" | "createdAt">>
 	): Review | undefined {
 		const index = records.findIndex((r) => r.id === id);
 		if (index === -1) return undefined;

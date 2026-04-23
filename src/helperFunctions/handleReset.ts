@@ -7,11 +7,13 @@ export const handleReset = (
 	setRestaurantQuery: (query: string) => void,
 	photos: PhotoEntry[],
 	setPhotos: (photos: PhotoEntry[]) => void,
-	setSubmitted: (value: boolean) => void,
+	setSubmitted: (value: boolean) => void
 ): void => {
 	reset();
 	setRestaurantQuery("");
-	photos.forEach(({ url }) => { URL.revokeObjectURL(url); });
+	photos.forEach(({ url }) => {
+		URL.revokeObjectURL(url);
+	});
 	setPhotos([]);
 	setSubmitted(false);
 };
