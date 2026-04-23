@@ -9,38 +9,115 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as RestaurantsRouteImport } from './routes/restaurants'
+import { Route as CreateRouteImport } from './routes/create'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RestaurantsRestaurantIdRouteImport } from './routes/restaurants_.$restaurantId'
 
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RestaurantsRoute = RestaurantsRouteImport.update({
+  id: '/restaurants',
+  path: '/restaurants',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateRoute = CreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RestaurantsRestaurantIdRoute = RestaurantsRestaurantIdRouteImport.update({
+  id: '/restaurants_/$restaurantId',
+  path: '/restaurants/$restaurantId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/restaurants': typeof RestaurantsRoute
+  '/reviews': typeof ReviewsRoute
+  '/restaurants/$restaurantId': typeof RestaurantsRestaurantIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/restaurants': typeof RestaurantsRoute
+  '/reviews': typeof ReviewsRoute
+  '/restaurants/$restaurantId': typeof RestaurantsRestaurantIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/restaurants': typeof RestaurantsRoute
+  '/reviews': typeof ReviewsRoute
+  '/restaurants_/$restaurantId': typeof RestaurantsRestaurantIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/create'
+    | '/restaurants'
+    | '/reviews'
+    | '/restaurants/$restaurantId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/create'
+    | '/restaurants'
+    | '/reviews'
+    | '/restaurants/$restaurantId'
+  id:
+    | '__root__'
+    | '/'
+    | '/create'
+    | '/restaurants'
+    | '/reviews'
+    | '/restaurants_/$restaurantId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CreateRoute: typeof CreateRoute
+  RestaurantsRoute: typeof RestaurantsRoute
+  ReviewsRoute: typeof ReviewsRoute
+  RestaurantsRestaurantIdRoute: typeof RestaurantsRestaurantIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/restaurants': {
+      id: '/restaurants'
+      path: '/restaurants'
+      fullPath: '/restaurants'
+      preLoaderRoute: typeof RestaurantsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create': {
+      id: '/create'
+      path: '/create'
+      fullPath: '/create'
+      preLoaderRoute: typeof CreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +125,22 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/restaurants_/$restaurantId': {
+      id: '/restaurants_/$restaurantId'
+      path: '/restaurants/$restaurantId'
+      fullPath: '/restaurants/$restaurantId'
+      preLoaderRoute: typeof RestaurantsRestaurantIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CreateRoute: CreateRoute,
+  RestaurantsRoute: RestaurantsRoute,
+  ReviewsRoute: ReviewsRoute,
+  RestaurantsRestaurantIdRoute: RestaurantsRestaurantIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
