@@ -15,6 +15,7 @@ export const resources = {
 const i18nOptions: InitOptions<HttpBackendOptions> = {
 	defaultNS,
 	ns: [defaultNS],
+	resources,
 	debug: !isProduction,
 	fallbackLng: "en",
 	interpolation: {

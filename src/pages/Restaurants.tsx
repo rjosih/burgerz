@@ -1,14 +1,20 @@
+import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Restaurant } from "../components/Restaurant";
+import { reviewDb } from "../mocks/reviews/db";
 import { restaurantDb } from "../mocks/restaurants/db";
 
 export const Restaurants = () => {
+	const navigate = useNavigate();
 	const restaurants = restaurantDb.getAll();
+	const allReviews = reviewDb.getAll();
 	const [query, setQuery] = useState("");
 
 	const filtered = restaurants.filter((r) =>
 		r.name.toLowerCase().includes(query.toLowerCase()),
 	);
+
+	const approvedByRestaurant = allReviews.filter((r) => r.moderationStatus === "approved");
 
 	return (
 		<div className="p-8">
@@ -21,9 +27,22 @@ export const Restaurants = () => {
 				onChange={(event) => { setQuery(event.target.value); }}
 			/>
 			<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-				{filtered.map((restaurant) => (
-					<Restaurant key={restaurant.id} restaurant={restaurant} />
-				))}
+				{filtered.map((restaurant) => {
+					const reviews = approvedByRestaurant.filter((r) => r.restaurantId === restaurant.id);
+					const averageRating =
+						reviews.length > 0
+							? reviews.reduce((sum, r) => sum + r.overallScore, 0) / reviews.length
+							: undefined;
+					return (
+						<Restaurant
+							key={restaurant.id}
+							averageRating={averageRating}
+							restaurant={restaurant}
+							reviewCount={reviews.length}
+							onClick={() => { void navigate({ to: "/restaurants/$restaurantId", params: { restaurantId: restaurant.id } }); }}
+						/>
+					);
+				})}
 			</div>
 		</div>
 	);
