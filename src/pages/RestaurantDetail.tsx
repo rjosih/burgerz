@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { type ReactElement, useState } from "react";
 import { PhotoImage } from "../components/PhotoImage";
 import { Review } from "../components/Review";
+import { isOpenNow, getTodayOpeningHours } from "../helperFunctions/openingHours";
 import { reviewDb } from "../mocks/reviews/db";
 import { restaurantDb } from "../mocks/restaurants/db";
 
@@ -36,6 +37,13 @@ export const RestaurantDetail = ({ restaurantId }: Props): ReactElement => {
 		);
 	}
 
+	const openNow = isOpenNow(restaurant.openingHours);
+	const todaySlots = getTodayOpeningHours(restaurant.openingHours);
+	const todayHours =
+		todaySlots.length > 0
+			? todaySlots.map((s) => `${s.open} – ${s.close}`).join(", ")
+			: "Closed today";
+
 	return (
 		<div className="p-8">
 			<Link
@@ -57,6 +65,14 @@ export const RestaurantDetail = ({ restaurantId }: Props): ReactElement => {
 					<h1 className="text-2xl font-bold text-slate-900">
 						{restaurant.name}
 					</h1>
+					<div className="flex items-center gap-2">
+						<span
+							className={`rounded-full px-2 py-0.5 text-xs font-medium ${openNow ? "bg-green-100 text-green-700" : "bg-slate-100 text-slate-500"}`}
+						>
+							{openNow ? "Open" : "Closed"}
+						</span>
+						<span className="text-sm text-slate-500">{todayHours}</span>
+					</div>
 					<p className="text-sm text-slate-500">{restaurant.address}</p>
 					<p className="text-sm text-slate-500">{restaurant.phone}</p>
 					{averageScore !== null && (

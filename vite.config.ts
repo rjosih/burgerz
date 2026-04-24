@@ -11,15 +11,23 @@ export default defineConfig({
 	plugins: [
 		react(),
 		tailwindcss(),
-		TanStackRouterVite(),
-		viteStaticCopy({
-			targets: [
-				{
-					src: normalizePath(path.resolve("./src/assets/locales")),
-					dest: normalizePath(path.resolve("./dist")),
-				},
-			],
-		}),
+		// TanStackRouterVite scans the routes directory during plugin init; that
+		// scan can interfere with Vitest's module loader for .tsx files before
+		// Vite's transform runs. Skip it (and the static-copy plugin) in tests —
+		// neither is needed for the jsdom environment.
+		...(process.env.VITEST
+			? []
+			: [
+					TanStackRouterVite(),
+					viteStaticCopy({
+						targets: [
+							{
+								src: normalizePath(path.resolve("./src/assets/locales")),
+								dest: normalizePath(path.resolve("./dist")),
+							},
+						],
+					}),
+				]),
 	],
 	server: {
 		host: true,
