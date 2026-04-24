@@ -46,7 +46,7 @@ const computeStats = (
 	};
 };
 
-const paginate = <T,>(
+const paginate = <T>(
 	items: Array<T>,
 	limit: number | undefined,
 	offset: number
