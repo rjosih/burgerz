@@ -1,9 +1,9 @@
 import { useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { type ReactElement, useState } from "react";
 import { Restaurant } from "../components/Restaurant";
 import { restaurantsApi } from "../mocks/api";
 
-export const Restaurants = () => {
+export const Restaurants = (): ReactElement => {
 	const navigate = useNavigate();
 	const [query, setQuery] = useState("");
 
@@ -26,7 +26,7 @@ export const Restaurants = () => {
 						setQuery(event.target.value);
 					}}
 				/>
-				<p aria-live="polite" aria-atomic="true" className="sr-only">
+				<p aria-atomic="true" aria-live="polite" className="sr-only">
 					{total} restaurant{total !== 1 ? "s" : ""} found
 				</p>
 			</div>

@@ -112,8 +112,8 @@ export const Create = (): ReactElement => {
 		<div className="p-8">
 			<h1 className="mb-8 text-2xl font-bold">Write a Review</h1>
 			<form
-				className="flex max-w-2xl flex-col gap-6"
 				noValidate
+				className="flex max-w-2xl flex-col gap-6"
 				onSubmit={handleSubmit((data) => {
 					onSubmit(data, photos, setSubmitted);
 				})}
