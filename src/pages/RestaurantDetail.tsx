@@ -6,8 +6,7 @@ import {
 	isOpenNow,
 	getTodayOpeningHours,
 } from "../helperFunctions/openingHours";
-import { reviewDb } from "../mocks/reviews/db";
-import { restaurantDb } from "../mocks/restaurants/db";
+import { restaurantsApi, reviewsApi } from "../mocks/api";
 
 interface Props {
 	restaurantId: string;
@@ -15,16 +14,11 @@ interface Props {
 
 export const RestaurantDetail = ({ restaurantId }: Props): ReactElement => {
 	const [expandedId, setExpandedId] = useState<string | null>(null);
-	const restaurant = restaurantDb.getById(restaurantId);
-	const approvedReviews = reviewDb
-		.getByRestaurantId(restaurantId)
-		.filter((r) => r.moderationStatus === "approved");
-
-	const averageScore =
-		approvedReviews.length > 0
-			? approvedReviews.reduce((sum, r) => sum + r.overallScore, 0) /
-				approvedReviews.length
-			: null;
+	const restaurant = restaurantsApi.getById(restaurantId);
+	const { items: approvedReviews } = reviewsApi.list({
+		restaurantId,
+		moderationStatus: "approved",
+	});
 
 	if (!restaurant) {
 		return (
@@ -94,12 +88,12 @@ export const RestaurantDetail = ({ restaurantId }: Props): ReactElement => {
 						{restaurant.address}
 					</p>
 					<p className="text-sm text-slate-500">{restaurant.phone}</p>
-					{averageScore !== null && (
+					{restaurant.averageRating !== null && (
 						<p className="text-sm font-medium text-slate-700">
-							Rating: {averageScore.toFixed(1)} / 5.0
+							Rating: {restaurant.averageRating.toFixed(1)} / 5.0
 							<span className="ml-2 font-normal text-slate-500">
-								({approvedReviews.length}{" "}
-								{approvedReviews.length === 1 ? "review" : "reviews"})
+								({restaurant.reviewCount}{" "}
+								{restaurant.reviewCount === 1 ? "review" : "reviews"})
 							</span>
 						</p>
 					)}

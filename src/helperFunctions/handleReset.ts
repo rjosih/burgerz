@@ -5,8 +5,8 @@ import type { FormValues, PhotoEntry } from "./types";
 export const handleReset = (
 	reset: UseFormReset<FormValues>,
 	setRestaurantQuery: (query: string) => void,
-	photos: PhotoEntry[],
-	setPhotos: (photos: PhotoEntry[]) => void,
+	photos: Array<PhotoEntry>,
+	setPhotos: (photos: Array<PhotoEntry>) => void,
 	setSubmitted: (value: boolean) => void
 ): void => {
 	reset();

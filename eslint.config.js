@@ -193,6 +193,7 @@ const unicornConfig = {
 }
 
 const eslintConfig = typescriptEslint.config(
+  { ignores: ["src/routeTree.gen.ts"] },
   baseESLintConfig,
   typescriptConfig,
   eslintConfigPrettier,

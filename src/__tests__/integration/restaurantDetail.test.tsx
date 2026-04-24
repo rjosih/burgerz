@@ -41,10 +41,10 @@ describe("RestaurantDetail – User Story 1", () => {
 
 			expect(screen.getByTestId("restaurant-status")).toHaveTextContent("Open");
 			expect(screen.getByTestId("restaurant-hours")).toHaveTextContent(
-				smashStationMondayHours,
+				smashStationMondayHours
 			);
 			expect(screen.getByTestId("restaurant-address")).toHaveTextContent(
-				smashStationAddress,
+				smashStationAddress
 			);
 		});
 
@@ -55,13 +55,13 @@ describe("RestaurantDetail – User Story 1", () => {
 			render(<RestaurantDetail restaurantId={BRIOCHE_BROTHERS_ID} />);
 
 			expect(screen.getByTestId("restaurant-status")).toHaveTextContent(
-				"Closed",
+				"Closed"
 			);
 			expect(screen.getByTestId("restaurant-hours")).toHaveTextContent(
-				"Closed today",
+				"Closed today"
 			);
 			expect(screen.getByTestId("restaurant-address")).toHaveTextContent(
-				briocheBrothersAddress,
+				briocheBrothersAddress
 			);
 		});
 
@@ -72,13 +72,13 @@ describe("RestaurantDetail – User Story 1", () => {
 			render(<RestaurantDetail restaurantId={SMASH_STATION_ID} />);
 
 			expect(screen.getByTestId("restaurant-status")).toHaveTextContent(
-				"Closed",
+				"Closed"
 			);
 			expect(screen.getByTestId("restaurant-hours")).toHaveTextContent(
-				smashStationMondayHours,
+				smashStationMondayHours
 			);
 			expect(screen.getByTestId("restaurant-address")).toHaveTextContent(
-				smashStationAddress,
+				smashStationAddress
 			);
 		});
 	});
@@ -93,7 +93,7 @@ describe("RestaurantDetail – User Story 1", () => {
 
 			expect(screen.getByTestId("restaurant-status")).toHaveTextContent("Open");
 			expect(screen.getByTestId("restaurant-hours")).toHaveTextContent(
-				smashStationMondayHours,
+				smashStationMondayHours
 			);
 		});
 
@@ -104,10 +104,10 @@ describe("RestaurantDetail – User Story 1", () => {
 			render(<RestaurantDetail restaurantId={SMASH_STATION_ID} />);
 
 			expect(screen.getByTestId("restaurant-status")).toHaveTextContent(
-				"Closed",
+				"Closed"
 			);
 			expect(screen.getByTestId("restaurant-hours")).toHaveTextContent(
-				smashStationMondayHours,
+				smashStationMondayHours
 			);
 		});
 	});
@@ -130,7 +130,7 @@ describe("RestaurantDetail – User Story 1", () => {
 			render(<RestaurantDetail restaurantId={SMASH_STATION_ID} />);
 
 			expect(screen.getByTestId("restaurant-status")).toHaveTextContent(
-				"Closed",
+				"Closed"
 			);
 		});
 
@@ -141,10 +141,10 @@ describe("RestaurantDetail – User Story 1", () => {
 			render(<RestaurantDetail restaurantId={BRIOCHE_BROTHERS_ID} />);
 
 			expect(screen.getByTestId("restaurant-status")).toHaveTextContent(
-				"Closed",
+				"Closed"
 			);
 			expect(screen.getByTestId("restaurant-hours")).toHaveTextContent(
-				"Closed today",
+				"Closed today"
 			);
 		});
 	});
