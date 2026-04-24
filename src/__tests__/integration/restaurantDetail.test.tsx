@@ -21,8 +21,7 @@ const smashStationAddress = "Storgatan 12, 302 43 Halmstad, Sweden";
 const briocheBrothersAddress = "Köpmansgatan 8, 302 42 Halmstad, Sweden";
 const smashStationMondayHours = "11:00 – 21:00";
 
-
-// User Story 1 -The user should see opening hours, address and open/closed status.
+// User Story 1 - The user should see opening hours, address and open/closed status.
 describe("RestaurantDetail – User Story 1", () => {
 	beforeEach(() => {
 		vi.useFakeTimers();
@@ -32,8 +31,7 @@ describe("RestaurantDetail – User Story 1", () => {
 		vi.useRealTimers();
 	});
 
-
-	 // Checks where the restaurant has hours today and is open now
+	// Checks where the restaurant has hours today and is open now.
 	describe("Equivalence Partitioning", () => {
 		it("shows Open when the restaurant is open today and current time is inside opening hours", () => {
 			// Monday 15:00 is inside 11:00–21:00
@@ -41,9 +39,13 @@ describe("RestaurantDetail – User Story 1", () => {
 
 			render(<RestaurantDetail restaurantId={SMASH_STATION_ID} />);
 
-			expect(screen.getByText("Open")).toBeInTheDocument();
-			expect(screen.getByText(smashStationMondayHours)).toBeInTheDocument();
-			expect(screen.getByText(smashStationAddress)).toBeInTheDocument();
+			expect(screen.getByTestId("restaurant-status")).toHaveTextContent("Open");
+			expect(screen.getByTestId("restaurant-hours")).toHaveTextContent(
+				smashStationMondayHours,
+			);
+			expect(screen.getByTestId("restaurant-address")).toHaveTextContent(
+				smashStationAddress,
+			);
 		});
 
 		it("shows Closed today when the restaurant has no opening hours today", () => {
@@ -52,9 +54,15 @@ describe("RestaurantDetail – User Story 1", () => {
 
 			render(<RestaurantDetail restaurantId={BRIOCHE_BROTHERS_ID} />);
 
-			expect(screen.getByText("Closed")).toBeInTheDocument();
-			expect(screen.getByText("Closed today")).toBeInTheDocument();
-			expect(screen.getByText(briocheBrothersAddress)).toBeInTheDocument();
+			expect(screen.getByTestId("restaurant-status")).toHaveTextContent(
+				"Closed",
+			);
+			expect(screen.getByTestId("restaurant-hours")).toHaveTextContent(
+				"Closed today",
+			);
+			expect(screen.getByTestId("restaurant-address")).toHaveTextContent(
+				briocheBrothersAddress,
+			);
 		});
 
 		it("shows Closed when the restaurant opens today but current time is before opening", () => {
@@ -63,9 +71,15 @@ describe("RestaurantDetail – User Story 1", () => {
 
 			render(<RestaurantDetail restaurantId={SMASH_STATION_ID} />);
 
-			expect(screen.getByText("Closed")).toBeInTheDocument();
-			expect(screen.getByText(smashStationMondayHours)).toBeInTheDocument();
-			expect(screen.getByText(smashStationAddress)).toBeInTheDocument();
+			expect(screen.getByTestId("restaurant-status")).toHaveTextContent(
+				"Closed",
+			);
+			expect(screen.getByTestId("restaurant-hours")).toHaveTextContent(
+				smashStationMondayHours,
+			);
+			expect(screen.getByTestId("restaurant-address")).toHaveTextContent(
+				smashStationAddress,
+			);
 		});
 	});
 
@@ -77,8 +91,10 @@ describe("RestaurantDetail – User Story 1", () => {
 
 			render(<RestaurantDetail restaurantId={SMASH_STATION_ID} />);
 
-			expect(screen.getByText("Open")).toBeInTheDocument();
-			expect(screen.getByText(smashStationMondayHours)).toBeInTheDocument();
+			expect(screen.getByTestId("restaurant-status")).toHaveTextContent("Open");
+			expect(screen.getByTestId("restaurant-hours")).toHaveTextContent(
+				smashStationMondayHours,
+			);
 		});
 
 		it("shows Closed exactly at closing time", () => {
@@ -87,15 +103,16 @@ describe("RestaurantDetail – User Story 1", () => {
 
 			render(<RestaurantDetail restaurantId={SMASH_STATION_ID} />);
 
-			expect(screen.getByText("Closed")).toBeInTheDocument();
-			expect(screen.getByText(smashStationMondayHours)).toBeInTheDocument();
+			expect(screen.getByTestId("restaurant-status")).toHaveTextContent(
+				"Closed",
+			);
+			expect(screen.getByTestId("restaurant-hours")).toHaveTextContent(
+				smashStationMondayHours,
+			);
 		});
 	});
 
-	/**
-	 * Decision Table Testing:
-	 * Checks combinations of opening hours and current time.
-	 */
+	// Checks combinations of opening hours and current time.
 	describe("Decision Table Testing", () => {
 		it("Rule 1: has hours today and time is inside hours → Open", () => {
 			// has hours: yes, inside hours: yes
@@ -103,7 +120,7 @@ describe("RestaurantDetail – User Story 1", () => {
 
 			render(<RestaurantDetail restaurantId={SMASH_STATION_ID} />);
 
-			expect(screen.getByText("Open")).toBeInTheDocument();
+			expect(screen.getByTestId("restaurant-status")).toHaveTextContent("Open");
 		});
 
 		it("Rule 2: has hours today and time is outside hours → Closed", () => {
@@ -112,7 +129,9 @@ describe("RestaurantDetail – User Story 1", () => {
 
 			render(<RestaurantDetail restaurantId={SMASH_STATION_ID} />);
 
-			expect(screen.getByText("Closed")).toBeInTheDocument();
+			expect(screen.getByTestId("restaurant-status")).toHaveTextContent(
+				"Closed",
+			);
 		});
 
 		it("Rule 3: has no hours today = Closed today", () => {
@@ -121,8 +140,12 @@ describe("RestaurantDetail – User Story 1", () => {
 
 			render(<RestaurantDetail restaurantId={BRIOCHE_BROTHERS_ID} />);
 
-			expect(screen.getByText("Closed")).toBeInTheDocument();
-			expect(screen.getByText("Closed today")).toBeInTheDocument();
+			expect(screen.getByTestId("restaurant-status")).toHaveTextContent(
+				"Closed",
+			);
+			expect(screen.getByTestId("restaurant-hours")).toHaveTextContent(
+				"Closed today",
+			);
 		});
 	});
 });
