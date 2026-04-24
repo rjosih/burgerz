@@ -6,9 +6,8 @@ import {
 	type KeyboardEvent,
 } from "react";
 import type { UseFormRegister, UseFormSetValue } from "react-hook-form";
-import { getFilteredRestaurants } from "../helperFunctions/filteredRestaurants";
 import { handleRestaurantSelect } from "../helperFunctions/handleRestaurantSelect";
-import { restaurantDb } from "../mocks/restaurants/db";
+import { restaurantsApi } from "../mocks/api";
 import type { FormValues } from "../helperFunctions/types";
 
 interface Props {
@@ -26,14 +25,13 @@ export const ChooseRestaurantReview = ({
 	setRestaurantQuery,
 	error,
 }: Props): ReactElement => {
-	const restaurants = restaurantDb.getAll();
 	const [showDropdown, setShowDropdown] = useState(false);
 	const [activeIndex, setActiveIndex] = useState(-1);
 	const listRef = useRef<HTMLUListElement>(null);
-	const filteredRestaurants = getFilteredRestaurants(
-		restaurants,
-		restaurantQuery
-	);
+	const { items: filteredRestaurants } = restaurantsApi.list({
+		search: restaurantQuery,
+		limit: 10,
+	});
 	const isExpanded = showDropdown && filteredRestaurants.length > 0;
 
 	// Scroll active option into view
