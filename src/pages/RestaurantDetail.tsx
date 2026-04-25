@@ -100,6 +100,19 @@ export const RestaurantDetail = ({ restaurantId }: Props): ReactElement => {
 				</div>
 			</div>
 
+			<section className="mb-8 rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+				<h2 className="mb-2 text-xl font-semibold text-slate-900">
+					About this location
+				</h2>
+				<p className="text-sm text-slate-600">
+					Located in the heart of downtown, a 5-minute walk from Central
+					Station and close to several bus stops. Outdoor seating is available
+					in summer, and the venue is wheelchair accessible. Free street
+					parking is usually available after 6 PM. (Mocked — real per-location
+					info arrives with the backend in 2.0.)
+				</p>
+			</section>
+
 			<h2 className="mb-4 text-xl font-semibold text-slate-900">Reviews</h2>
 
 			{approvedReviews.length === 0 ? (
