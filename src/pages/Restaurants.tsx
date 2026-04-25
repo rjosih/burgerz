@@ -12,7 +12,7 @@ export const Restaurants = (): ReactElement => {
 	return (
 		<div className="p-8">
 			<h1 className="mb-6 text-2xl font-bold">Restaurants</h1>
-			<div className="mb-6 flex flex-col gap-1">
+			<div className="mb-6 flex flex-col gap-3">
 				<label className="sr-only" htmlFor="restaurant-search">
 					Search restaurants
 				</label>
@@ -26,6 +26,17 @@ export const Restaurants = (): ReactElement => {
 						setQuery(event.target.value);
 					}}
 				/>
+				<button
+					className="w-fit rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:outline-none"
+					type="button"
+					onClick={() => {
+						alert(
+							"Found 3 nearby restaurants serving burgers within 1 km. (Mocked — real geolocation arrives with the backend in 2.0.)",
+						);
+					}}
+				>
+					Find nearby restaurants
+				</button>
 				<p aria-atomic="true" aria-live="polite" className="sr-only">
 					{total} restaurant{total !== 1 ? "s" : ""} found
 				</p>

@@ -23,7 +23,7 @@ const records: Array<Restaurant> = [
 			exifStrippedKey:
 				"photos/restaurants/smash-station-halmstad/clean/smashstationhalmstad-clean.avif",
 			altText: "Exterior of Smash Station Halmstad with outdoor seating",
-			caption: "Front entrance of Smash Station Halmstad",
+			caption: "Smash burger with melted cheese and crispy edges at Smash Station Halmstad",
 			isDecorative: false,
 		},
 		location: { lat: 56.6749, lng: 12.8576, geohash: "u62823a" },
@@ -65,7 +65,7 @@ const records: Array<Restaurant> = [
 			exifStrippedKey:
 				"photos/restaurants/brioche-brothers/clean/briochebrothers-clean.avif",
 			altText: "Interior of Brioche Brothers burger restaurant",
-			caption: "Dining area at Brioche Brothers",
+			caption: "Stacked burger on a glossy brioche bun at Brioche Brothers",
 			isDecorative: false,
 		},
 		location: { lat: 56.6754, lng: 12.8582, geohash: "u62823b" },
@@ -103,7 +103,7 @@ const records: Array<Restaurant> = [
 			exifStrippedKey:
 				"photos/restaurants/patty-corner/clean/pattycorner-clean.avif",
 			altText: "Burger plate with fries served at Patty Corner",
-			caption: "Signature burger meal at Patty Corner",
+			caption: "Juicy double-patty burger with lettuce and pickles at Patty Corner",
 			isDecorative: false,
 		},
 		location: { lat: 56.6738, lng: 12.8591, geohash: "u62823c" },
@@ -142,7 +142,7 @@ const records: Array<Restaurant> = [
 			exifStrippedKey:
 				"photos/restaurants/northern-bun-umea/clean/northernbunumea-clean.avif",
 			altText: "Exterior of Northern Bun Umeå on a snowy street",
-			caption: "Northern Bun Umeå entrance",
+			caption: "Hand-held burger with caramelized onions and cheddar at Northern Bun Umeå",
 			isDecorative: false,
 		},
 		location: { lat: 63.8258, lng: 20.263, geohash: "u4pruyd" },
