@@ -21,7 +21,7 @@ export const Home = (): FunctionComponent => {
 					{t("home.greeting")}
 				</h1>
 				<p className="text-base font-normal text-blue-100 sm:text-lg">
-					Discover and review burger restaurants near you.
+					{t("home.description")}
 				</p>
 			</div>
 			<Button

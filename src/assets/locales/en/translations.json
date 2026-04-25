@@ -1,6 +1,6 @@
 {
     "home": {
         "greeting": "Hello, world!",
-        "translate": ""
+        "description": "Discover and review burger restaurants near you."
     }
 }
