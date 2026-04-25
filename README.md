@@ -195,7 +195,7 @@ Burgerz follows a risk-based, test-pyramid approach, **integration first**, with
 | # | E2E test | Reason | Status |
 | - | -------- | ------ | ------ |
 | 1 | Restaurant page shows opening hours, address, open/closed badge | Mandatory US-1 | Implemented — [e2e/restaurantDetails.spec.ts](e2e/restaurantDetails.spec.ts) |
-| 2 | User submits valid review | Mandatory US-2 | (Future) |
+| 2 | User submits valid review | Mandatory US-2 | Implemented — [e2e/submitReview.spec.ts](e2e/submitReview.spec.ts) |
 | 3 | Invalid review shows validation errors | Protects score/text business rules | (Future) |
 | 4 | Failed review submission shows error | Optimistic-UI failure risk | (Future) |
 | 5 | Invalid photo upload is rejected | Security / privacy risk | (Future) |
