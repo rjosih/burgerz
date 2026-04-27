@@ -176,8 +176,7 @@ export const Create = (): ReactElement => {
 						Submit review
 					</Button>
 					{isSubmitBlocked && (
-						<p
-							aria-live="assertive"
+						<output
 							className="text-xs text-slate-500"
 							role="alert"
 						>
@@ -185,7 +184,7 @@ export const Create = (): ReactElement => {
 							photos.some((p) => p.moderationStatus === "flagged")
 								? "Fix flagged content before submitting."
 								: "Waiting for content scan to complete…"}
-						</p>
+						</output>
 					)}
 				</div>
 			</form>

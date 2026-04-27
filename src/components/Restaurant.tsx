@@ -1,4 +1,5 @@
 import { PhotoImage } from "./PhotoImage";
+import { Button } from "./Button";
 import type { Restaurant as RestaurantType } from "../mocks/restaurants/types";
 import type { ReactElement } from "react";
 
@@ -26,13 +27,15 @@ export const Restaurant = ({
 			/>
 			<div className="flex flex-col gap-1 p-4">
 				<h2 className="text-lg font-semibold text-slate-900">
-					<button
-						className="text-left hover:underline focus-visible:underline focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-1 focus-visible:outline-none rounded"
+					<Button
+						className="rounded! border-transparent! bg-transparent! px-0! py-0! text-lg! font-semibold! text-slate-900! text-left hover:border-transparent! hover:bg-transparent! hover:underline focus-visible:underline"
+						color="secondary"
+						size="md"
 						type="button"
 						onClick={onClick}
 					>
 						{name}
-					</button>
+					</Button>
 				</h2>
 				<p className="text-sm text-slate-500">{address}</p>
 				<p className="text-sm text-slate-500">{phone}</p>
