@@ -57,20 +57,20 @@ test.describe("US-2: Submit a review", () => {
 
 		await test.step("Reviewer rates taste, texture, and visual", async () => {
 			await page
-				.getByRole("button", {
+				.getByRole("radio", {
 					name: `Taste: ${validReview.scores.taste} out of 5`,
 				})
-				.click();
+				.check();
 			await page
-				.getByRole("button", {
+				.getByRole("radio", {
 					name: `Texture: ${validReview.scores.texture} out of 5`,
 				})
-				.click();
+				.check();
 			await page
-				.getByRole("button", {
+				.getByRole("radio", {
 					name: `Visual: ${validReview.scores.visual} out of 5`,
 				})
-				.click();
+				.check();
 
 			// Overall score should be the average of the three
 			await expect(

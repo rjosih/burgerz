@@ -22,7 +22,7 @@ export const ScoreButton = ({
 					<label
 						key={score}
 						className={cn(
-							"flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border text-xs font-medium transition-colors focus-within:ring-2 focus-within:ring-slate-500 focus-within:ring-offset-1",
+							"relative flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border text-xs font-medium transition-colors focus-within:ring-2 focus-within:ring-slate-500 focus-within:ring-offset-1",
 							checked
 								? "border-transparent bg-slate-700 text-white"
 								: "border-slate-300 bg-white text-slate-600 hover:border-slate-500 hover:bg-slate-100"
@@ -31,7 +31,7 @@ export const ScoreButton = ({
 						<input
 							aria-label={`${fieldName}: ${score} out of 5`}
 							checked={checked}
-							className="sr-only"
+							className="absolute inset-0 cursor-pointer opacity-0"
 							name={fieldName}
 							type="radio"
 							value={score}
