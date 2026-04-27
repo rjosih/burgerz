@@ -1,4 +1,5 @@
 import type { ReactElement } from "react";
+import { Button } from "./Button";
 import { PhotoImage } from "./PhotoImage";
 import type { Review as ReviewType } from "../mocks/reviews/types";
 
@@ -63,15 +64,17 @@ export const Review = ({
 					<time className="text-xs text-slate-500" dateTime={createdAt}>
 						{date}
 					</time>
-					<button
+					<Button
 						aria-controls={bodyId}
 						aria-expanded={isExpanded}
-						className="rounded text-xs text-slate-500 hover:text-slate-700 hover:underline focus-visible:underline focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-1 focus-visible:outline-none"
+						className="rounded! border-transparent! bg-transparent! px-0! py-0! font-normal! text-slate-500 hover:border-transparent! hover:bg-transparent! hover:text-slate-700 hover:underline focus-visible:underline"
+						color="secondary"
+						size="sm"
 						type="button"
 						onClick={onToggle}
 					>
 						{isExpanded ? "Show less" : "Read more"}
-					</button>
+					</Button>
 				</div>
 			</div>
 		</article>

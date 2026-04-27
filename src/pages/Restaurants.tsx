@@ -1,5 +1,6 @@
 import { useNavigate } from "@tanstack/react-router";
 import { type ReactElement, useState } from "react";
+import { Button } from "../components/Button";
 import { Restaurant } from "../components/Restaurant";
 import { restaurantsApi } from "../mocks/api";
 
@@ -26,8 +27,10 @@ export const Restaurants = (): ReactElement => {
 						setQuery(event.target.value);
 					}}
 				/>
-				<button
-					className="w-fit rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:outline-none"
+				<Button
+					className="w-fit"
+					color="secondary"
+					size="md"
 					type="button"
 					onClick={() => {
 						alert(
@@ -36,7 +39,7 @@ export const Restaurants = (): ReactElement => {
 					}}
 				>
 					Find nearby restaurants
-				</button>
+				</Button>
 				<p aria-atomic="true" aria-live="polite" className="sr-only">
 					{total} restaurant{total !== 1 ? "s" : ""} found
 				</p>

@@ -105,16 +105,18 @@ export const UploadPhotos = ({ photos, setPhotos }: Props): ReactElement => {
 										<span className="mt-0.5 px-1 text-center text-3xs font-semibold uppercase tracking-wide text-red-100">
 											{moderationLabel}
 										</span>
-										<button
+										<Button
 											aria-label={`Remove flagged photo: ${file.name}`}
-											className="mt-1 rounded bg-red-900/60 px-1.5 py-0.5 text-3xs text-white hover:bg-red-900"
+											className="mt-1 rounded! bg-red-900/60! px-1.5! py-0.5! text-3xs! hover:bg-red-900!"
+											color="primary"
+											size="sm"
 											type="button"
 											onClick={() => {
 												removePhoto(index, setPhotos);
 											}}
 										>
 											Remove
-										</button>
+										</Button>
 									</div>
 								)}
 

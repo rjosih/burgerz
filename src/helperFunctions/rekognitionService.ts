@@ -31,7 +31,7 @@ const FLAGGED_KEYWORDS = [
 	"inappropriate",
 ];
 
-export const moderateImage = async (): Promise<ImageModerationResult> => {
+export const moderateImage = async (file: File): Promise<ImageModerationResult> => {
 	// Simulate DetectModerationLabels API latency
 	await delay(1200 + Math.random() * 800);
 
